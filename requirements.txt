@@ -1,0 +1,12 @@
+drf-spectacular==0.26.3
+eventlet==0.33.3
+boto3==1.28.3
+celery==5.3.1
+Django==4.2.3
+django-storages==1.13.2
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
+Pillow==10.0.0
+python-dotenv==1.0.0
+psycopg2==2.9.6
+django-cors-headers==4.2.0
