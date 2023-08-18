@@ -49,7 +49,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "username",
-            "email",
             "bio",
             "is_admin",
             "photo",
