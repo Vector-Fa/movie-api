@@ -63,7 +63,7 @@ class UserFollowService:
         self.user = user
         self.to_username = to_username
 
-    def follow(self) -> Response:
+    def follow(self):
         self._is_self()
         user_to = self._get_user_to()
 
@@ -109,7 +109,7 @@ def search_user(query: str):
     return None
 
 
-def is_user_friend(username: str, user: User):
+def is_following_user(username: str, user: User):
     if Follow.objects.filter(user_from=user, user_to__username=username).exists():
         return SuccessResponse({'message': 'exists'})
     return FailureResponse({'message': 'doesn\'t exists'})

@@ -9,7 +9,7 @@ from .serializers import (UserRegisterSerializer, UserSerializer, SearchUserOutp
                           AnswerRecommendedMovieOutSerializer, GetRecommendedMoviesOutSerializer)
 from .models import User, MovieRecommend, MovieRecommendAnswer
 from .services import (UserFollowService, check_registration_email, UploadProfileImageService,
-                       register_user, search_user, is_user_friend, FollowListService,
+                       register_user, search_user, is_following_user, FollowListService,
                        MovieRecommendService)
 from ..custom_response import SuccessResponse
 from ..utils import is_serializer_valid, get_or_404
@@ -208,7 +208,7 @@ class IsUserFriendApi(APIView):
     serializer_class = None
 
     def get(self, request, username: str):
-        return is_user_friend(username, request.user)
+        return is_following_user(username, request.user)
 
 
 class RecommendMovieToUserApi(APIView):
