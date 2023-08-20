@@ -29,7 +29,7 @@ def check_registration_email(email: str):
         email=email, defaults={'code': verify_code}
     )
 
-    send_email_task(email=email, verify_code=verify_code).delay()
+    send_email_task.delay(email=email, verify_code=verify_code)
     return SuccessResponse({'message': 'code sent'})
 
 
@@ -53,7 +53,7 @@ class UploadProfileImageService:
         storage = FileSystemStorage()
         if not storage.exists(image_path):
             storage.save(image_path, File(image))
-            upload_profile_image_task(image_path=storage.path(image_path), user_id=user.id).delay()
+            upload_profile_image_task.delay(image_path=storage.path(image_path), user_id=user.id)
             return SuccessResponse({'message': 'photo is uploading'}, status=status.HTTP_200_OK)
         raise ForbiddenException('wait to upload your last image first')
 
@@ -103,7 +103,7 @@ class FollowListService:
 
 
 def search_user(query: str):
-    users = User.objects.filter(Q(username__icontains=query))[:30]
+    users = User.objects.filter(username__icontains=query)[:30]
     if users:
         return users
     return None

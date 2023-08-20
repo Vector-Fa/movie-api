@@ -38,7 +38,6 @@ class UploadProfileImageSerializer(serializers.Serializer):
     image = serializers.ImageField(required=True, write_only=True)
 
 
-# TODO: if its for searching for users use another one to not show email
 class UserSerializer(serializers.ModelSerializer):
     follower_count = serializers.SerializerMethodField()
     following_count = serializers.SerializerMethodField()

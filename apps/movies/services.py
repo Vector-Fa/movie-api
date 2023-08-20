@@ -52,8 +52,8 @@ class FavoriteMovieService:
         return SuccessResponse({'message': 'Added to your favorite movies'})
 
     def remove(self):
-        favorite_movie = self._get_favorite_movie_query()
-        if not favorite_movie.exists():
+        favorite_movie = self._get_favorite_movie_query().firest()
+        if not favorite_movie:
             raise BadRequestException('movies is not in your list')
         favorite_movie.delete()
         return SuccessResponse({'message': 'Removed from your favorite movies'})
